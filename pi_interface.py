@@ -10,30 +10,23 @@
 #GPS is emulated using timer 
 #RFID tag is emulated using button press 
 #each loading session is represented by the counter
-
-from random import randint
 import requests
 import time 
 
 listOfLCL = [1, 2, 3]
 tagurl = 'https://lcl-enterprises.herokuapp.com/lcls/register' 
-arrivalurl = 'https://lcl-enterprises.herokuapp.com/lcls/arrival'
+arrivalurl = 'https://lcl-enterprises.herokuapp.com/lcls/arrived'
 
 counter = 0; 
 
-while counter <= 3: 
-	randLCL = randint(0, 2)
-	tagEmulate = input("Press a to emulate the tag: ")
-	if tagEmulate == 'a': 
-		r = requests.post(tagurl, data = {'container_id' : "GLFU2814428", 'lcl_id' : listOfLCL[randLCL]}) #container ID is unique to each microprocessor 
-	counter = counter + 1 #simulates each loading session 
+# while counter <= 3: 
+# 	randLCL = randint(0, 2)
+# 	tagEmulate = input("Press a to emulate the tag: ")
+# 	if tagEmulate == 'a': 
+# 		r = requests.post(tagurl, data = {'container_id' : "GLFU2814428", 'lcl_id' : listOfLCL[randLCL]}) #container ID is unique to each microprocessor 
+# 	counter = counter + 1 #simulates each loading session 
 
-start_time = time.time()
+
 time.sleep(3)
-journey_time = time.time() - start_time 
-
-if journey_time >= 3: #after 3 seconds have been elapsed
-	arrival = requests.post(arrivalurl, data = {'container_id' : "GLFU2814428"} )
-
-
-
+#after 3 seconds have been elapsed
+arrival = requests.post(arrivalurl, data = {'container_id' : "2"} )
